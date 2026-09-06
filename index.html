@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5eedd">
+<title>日韩五城 · 双人 13 天旅行手册</title>
+<style>
+:root{
+  --kyoto:#c7402d; --osaka:#d97b12; --kobe:#2278c4; --busan:#0e9488; --seoul:#7b5cc7; --transit:#6b7a8f;
+  --bg:#f5eedd; --card:#fffdf4; --ink:#3b3226; --sub:#7d7059; --line:#e2d6ba;
+  --sea:#cfe3e8; --land:#eee3c4; --land-line:#8c7a55; --sea-deco:#9dbec7;
+  --shadow:0 2px 12px rgba(90,70,30,.10);
+  --chip:#f0e7cf;
+}
+html.night{
+  --bg:#121826; --card:#1b2334; --ink:#e9e3d2; --sub:#9aa3b8; --line:#2b3550;
+  --sea:#182238; --land:#2a3145; --land-line:#8a93ad; --sea-deco:#3d4a68;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+  --chip:#242e45;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.65; font-size:15px;
+  transition:background .5s,color .5s;
+}
+.wrap{max-width:780px;margin:0 auto;padding:14px 14px 60px}
+h1,h2,h3,.serif{font-family:"Kaiti SC","STKaiti","KaiTi","BiauKai","DFKai-SB",serif}
+a{color:inherit}
+/* ---------- 顶栏 ---------- */
+header.top{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 4px 16px}
+.title h1{font-size:27px;letter-spacing:2px;line-height:1.3}
+.title p{color:var(--sub);font-size:13px;margin-top:4px;letter-spacing:1px}
+.theme-btn{
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);
+  width:38px;height:38px;border-radius:50%;font-size:17px;cursor:pointer;flex:none;margin-top:6px;
+  box-shadow:var(--shadow);transition:transform .2s;
+}
+.theme-btn:active{transform:scale(.9)}
+/* ---------- 通用卡片 ---------- */
+section{margin-bottom:26px}
+.card{
+  background:var(--card);border:1.5px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);padding:18px 16px;position:relative;overflow:hidden;
+}
+.tape{
+  position:absolute;top:-8px;left:50%;transform:translateX(-50%) rotate(-2deg);
+  width:96px;height:20px;background:var(--kyoto);opacity:.16;border-radius:2px;
+}
+h2.sec{
+  font-size:20px;letter-spacing:2px;margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+h2.sec::after{content:"";flex:1;border-top:1.5px dashed var(--line)}
+/* ---------- 此刻关注 ---------- */
+#live .event-name{font-size:19px;font-weight:700;letter-spacing:.5px}
+#live .event-sub{color:var(--sub);font-size:13px;margin-top:2px}
+#live .event-when{font-size:12.5px;color:var(--sub);margin-top:6px}
+#live .event-when b{color:var(--ink);font-variant-numeric:tabular-nums}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.count .cell{
+  text-align:center;background:var(--chip);border-radius:10px;padding:10px 4px 8px;
+  border:1.5px solid var(--line);
+}
+.count .num{font-size:clamp(26px,7.5vw,40px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;font-family:"SF Pro Display",-apple-system,sans-serif;letter-spacing:1px}
+.count .unit{font-size:12px;color:var(--sub);margin-top:2px;letter-spacing:3px}
+.live-hint{font-size:12px;color:var(--sub);margin-top:10px;text-align:center}
+/* ---------- 地点 ---------- */
+.place{
+  color:inherit;text-decoration:underline dotted;text-decoration-thickness:1.5px;
+  text-underline-offset:3px;cursor:pointer;font-weight:600;
+}
+.place:hover{text-decoration-style:solid}
+.place::before{content:"📍";font-size:.85em;margin-right:1px;text-decoration:none}
+/* ---------- 徽章 ---------- */
+.badge{display:inline-block;font-size:11px;padding:1px 7px;border-radius:20px;vertical-align:2px;white-space:nowrap;font-weight:600;letter-spacing:.5px}
+.b-warn{background:rgba(217,73,42,.14);color:#d9492a;border:1px solid rgba(217,73,42,.4)}
+.b-ok{background:rgba(14,148,136,.14);color:#0e9488;border:1px solid rgba(14,148,136,.4)}
+html.night .b-warn{color:#ff8a70}html.night .b-ok{color:#4dd0c4}
+.b-info{background:rgba(107,122,143,.15);color:var(--sub);border:1px solid var(--line)}
+/* ---------- 总览地图 ---------- */
+.map-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;justify-content:center}
+.map-legend span{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:5px}
+.map-legend i{width:22px;height:0;border-top:3.5px dashed;border-radius:2px;display:inline-block}
+#ovmap{width:100%;height:auto;display:block}
+/* ---------- 预订 ---------- */
+.grp-label{font-size:13px;color:var(--sub);letter-spacing:2px;margin:16px 0 8px;font-weight:700}
+.grp-label:first-of-type{margin-top:0}
+.flight{
+  display:flex;gap:10px;align-items:stretch;background:var(--chip);border:1.5px solid var(--line);
+  border-radius:10px;padding:10px 12px;margin-bottom:8px;
+}
+.flight .fd{width:66px;flex:none;display:flex;flex-direction:column;justify-content:center;border-right:1.5px dashed var(--line);padding-right:8px}
+.flight .fd b{font-size:13px}
+.flight .fd span{font-size:11px;color:var(--sub)}
+.flight .fmain{flex:1;min-width:0}
+.flight .fline{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;flex-wrap:wrap}
+.flight .fn{font-size:11px;color:var(--sub);margin-top:2px}
+.dotline{color:var(--sub);letter-spacing:-1px;overflow:hidden;white-space:nowrap}
+.hotel{background:var(--chip);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.hotel .hname{font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.hotel .hmeta{font-size:12.5px;color:var(--sub);margin-top:3px}
+.stay-tag{font-size:11px;color:var(--sub);white-space:nowrap}
+/* ---------- 逐日 ---------- */
+.day{background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--c,#888);
+  border-radius:14px;box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden;position:relative}
+.day.today{outline:2.5px solid var(--kyoto);outline-offset:2px}
+.day-head{padding:13px 14px 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.day-badge{
+  background:var(--c,#888);color:#fff;font-size:12px;font-weight:800;padding:2px 9px;border-radius:8px;letter-spacing:1px;flex:none;
+}
+.day-title{font-size:16.5px;font-weight:700;flex:1;min-width:140px}
+.day-title small{display:block;font-weight:400;font-size:12px;color:var(--sub)}
+.today-flag{background:var(--kyoto);color:#fff;font-size:11px;border-radius:8px;padding:1px 8px;font-weight:700;display:none}
+.day.today .today-flag{display:inline-block}
+.route-btn{
+  border:1.5px solid var(--line);background:var(--chip);color:var(--ink);border-radius:20px;
+  font-size:12.5px;padding:4px 12px;cursor:pointer;white-space:nowrap;
+}
+.route-btn .arw{display:inline-block;transition:transform .25s;font-size:11px}
+.route-btn.open .arw{transform:rotate(180deg)}
+.day-route{display:none;padding:0 14px 6px}
+.day-route.show{display:block}
+.day-route svg{width:100%;height:auto}
+.gnav{
+  display:block;text-align:center;margin:8px 0 4px;text-decoration:none;font-size:13.5px;font-weight:700;
+  background:var(--c,#888);color:#fff;border-radius:22px;padding:8px 10px;
+}
+.day-tz{font-size:11px;color:var(--sub);padding:0 14px 4px}
+.tl{list-style:none;padding:4px 14px 10px}
+.tl li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:none}
+.tl time{font-variant-numeric:tabular-nums;font-weight:800;font-size:13.5px;color:var(--c,#888);padding-top:1px}
+.tl .what{font-size:14px}
+.tl .what .note{display:block;font-size:12px;color:var(--sub);margin-top:1px}
+.day-stay{
+  margin:0 14px 12px;background:var(--chip);border:1.5px dashed var(--line);border-radius:10px;
+  padding:8px 12px;font-size:13px;
+}
+/* ---------- 待办 ---------- */
+#todo ul{list-style:none;padding-left:0}
+#todo li{
+  padding:9px 2px 9px 34px;border-bottom:1px dashed var(--line);position:relative;font-size:14.5px;
+}
+#todo li:last-child{border-bottom:none}
+#todo li::before{content:"☐";position:absolute;left:6px;top:8px;font-size:17px;color:var(--sub)}
+#todo li b{font-weight:700}
+#todo .urgent{color:#d9492a;font-weight:700;font-size:12px}
+html.night #todo .urgent{color:#ff8a70}
+/* ---------- 贴士 ---------- */
+#tips .tip{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+#tips .tip:last-child{border-bottom:none}
+#tips .tip .ico{flex:none;font-size:16px}
+#tips .tip b{font-weight:700}
+footer{margin-top:34px;text-align:center;color:var(--sub);font-size:12px;letter-spacing:1px}
+@media (max-width:420px){
+  .tl li{grid-template-columns:46px 1fr;gap:8px}
+  .count .num{font-size:clamp(24px,9vw,34px)}
+  .title h1{font-size:23px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="title">
+    <h1>日韩五城 · 双人 13 天</h1>
+    <p>2026.9.24 — 10.7 ｜ 京都 · 大阪 · 神户 · 釜山 · 首尔</p>
+  </div>
+  <button class="theme-btn" id="themeBtn" title="切换昼夜">🌗</button>
+</header>
+
+<!-- ============ 此刻关注 ============ -->
+<section id="live">
+  <div class="card">
+    <div class="tape"></div>
+    <h2 class="sec"><span>🔭</span>此刻关注</h2>
+    <div id="ev-name" class="event-name">—</div>
+    <div id="ev-sub" class="event-sub">—</div>
+    <div id="ev-when" class="event-when">—</div>
+    <div class="count">
+      <div class="cell"><div class="num" id="cd-d">–</div><div class="unit">天</div></div>
+      <div class="cell"><div class="num" id="cd-h">–</div><div class="unit">时</div></div>
+      <div class="cell"><div class="num" id="cd-m">–</div><div class="unit">分</div></div>
+      <div class="cell"><div class="num" id="cd-s">–</div><div class="unit">秒</div></div>
+    </div>
+    <div class="live-hint">倒计时基于绝对时间计算，在任何时区打开都不会算错</div>
+  </div>
+</section>
+
+<!-- ============ 总览地图 ============ -->
+<section id="map">
+  <div class="card">
+    <div class="tape"></div>
+    <h2 class="sec"><span>🗺️</span>行程总览</h2>
+    <svg id="ovmap" viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" aria-label="日韩五城行程总览地图">
+      <defs>
+        <marker id="arrow" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M1,1 L7,4 L1,7 Z" fill="var(--land-line)"/>
+        </marker>
+      </defs>
+      <!-- 海 -->
+      <rect x="0" y="0" width="1000" height="660" fill="var(--sea)" rx="18"/>
+      <!-- 海浪装饰 -->
+      <g stroke="var(--sea-deco)" fill="none" stroke-width="2" stroke-linecap="round" opacity=".7">
+        <path d="M60,600 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M520,625 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M640,640 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M620,560 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M40,300 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M585,90 q12,-9 24,0 q12,9 24,0"/>
+        <path d="M700,600 q12,-9 24,0 q12,9 24,0"/>
+      </g>
+      <!-- 日本 本州西部 -->
+      <path d="M 96,120
+        C 150,74 250,56 340,62
+        C 420,68 490,50 534,86
+        C 566,114 574,152 560,182
+        C 548,208 556,238 542,266
+        C 530,290 552,314 544,338
+        C 536,362 506,372 494,396
+        C 484,416 492,442 482,466
+        C 470,494 448,516 440,544
+        C 434,566 424,590 404,586
+        C 384,582 380,552 374,524
+        C 368,498 372,470 360,446
+        C 352,430 336,424 328,408
+        C 320,392 324,374 314,364
+        C 302,352 284,356 268,348
+        C 250,338 240,322 220,318
+        C 198,312 176,322 154,318
+        C 130,312 112,298 96,286
+        C 80,272 74,238 70,204
+        C 66,170 70,136 78,130 Z"
+        fill="var(--land)" stroke="var(--land-line)" stroke-width="3" stroke-linejoin="round"/>
+      <!-- 四国（一角） -->
+      <path d="M 96,420 C 140,400 200,410 240,448 C 262,470 268,502 252,528 C 230,548 180,544 142,524 C 112,506 88,470 84,444 Z"
+        fill="var(--land)" stroke="var(--land-line)" stroke-width="3" stroke-linejoin="round"/>
+      <!-- 淡路岛 -->
+      <path d="M 344,418 C 360,412 376,428 378,448 C 380,468 368,488 352,486 C 338,484 330,462 330,444 C 330,432 334,422 344,418 Z"
+        fill="var(--land)" stroke="var(--land-line)" stroke-width="2.5"/>
+      <!-- 关西机场（人工岛） -->
+      <rect x="336" y="500" width="34" height="14" rx="7" fill="var(--land)" stroke="var(--land-line)" stroke-width="2.5"/>
+      <!-- 韩国 朝鲜半岛南部 -->
+      <path d="M 700,64
+        C 740,30 820,26 872,44
+        C 920,60 956,96 966,150
+        C 976,204 944,240 952,292
+        C 958,330 986,358 988,404
+        C 990,444 972,478 956,500
+        C 940,522 908,516 884,506
+        C 856,494 826,478 794,466
+        C 764,454 736,446 720,414
+        C 706,384 716,346 706,312
+        C 696,276 674,248 674,210
+        C 674,166 682,130 692,100
+        C 696,86 692,72 700,64 Z"
+        fill="var(--land)" stroke="var(--land-line)" stroke-width="3" stroke-linejoin="round"/>
+      <!-- 山 -->
+      <g stroke="var(--land-line)" stroke-width="2.2" fill="none" stroke-linejoin="round" opacity=".85">
+        <path d="M 452,132 l 12,-18 l 12,18 M 462,116 l 6,-9 l 6,9"/>
+        <path d="M 402,208 l 11,-16 l 11,16"/>
+        <path d="M 880,190 l 13,-19 l 13,19 M 892,174 l 6,-9 l 6,9"/>
+      </g>
+      <!-- 明石海峡大桥（示意短线） -->
+      <path d="M 296,372 C 306,388 318,396 332,400" stroke="var(--land-line)" stroke-width="2" stroke-dasharray="2 4" fill="none"/>
+
+      <!-- 路线 -->
+      <g fill="none" stroke-linecap="round" marker-end="url(#arrow)">
+        <!-- Day1 关西机场→京都 -->
+        <path id="r-d1" d="M 356,494 C 390,470 430,420 452,366 C 466,330 470,290 476,252" stroke="var(--transit)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <!-- Day3 京都→宇治→奈良→大阪 -->
+        <path d="M 482,196 C 496,206 502,216 508,230" stroke="var(--kyoto)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <path d="M 516,246 C 526,252 530,258 534,266" stroke="var(--kyoto)" stroke-width="3.5" stroke-dasharray="9 7" marker-end="none"/>
+        <path d="M 528,286 C 506,304 484,312 462,316" stroke="var(--kyoto)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <!-- Day6 大阪→神户 -->
+        <path d="M 440,330 C 410,346 386,352 362,352" stroke="var(--osaka)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <!-- Day7 神户→有马→须磨→舞子 -->
+        <path d="M 358,342 C 372,320 380,300 388,282" stroke="var(--kobe)" stroke-width="3" stroke-dasharray="6 6"/>
+        <path d="M 380,268 C 370,274 364,282 358,290" stroke="var(--kobe)" stroke-width="3" stroke-dasharray="6 6" marker-end="none"/>
+        <path d="M 336,360 C 316,364 296,362 278,356" stroke="var(--kobe)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <!-- Day8 神户→KIX -->
+        <path d="M 352,362 C 356,420 354,460 350,494" stroke="var(--busan)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <!-- Day8 KIX→釜山 航线 -->
+        <path d="M 372,506 C 520,610 760,620 930,520" stroke="var(--busan)" stroke-width="3" stroke-dasharray="4 10" marker-end="none"/>
+        <text x="640" y="596" font-size="24" text-anchor="middle">✈️</text>
+        <!-- Day9 釜山市内 甘川→海云台 -->
+        <path d="M 906,506 C 928,498 950,486 962,470" stroke="var(--busan)" stroke-width="3" stroke-dasharray="6 6"/>
+        <!-- Day11 KTX 釜山→首尔 -->
+        <path d="M 936,458 C 850,400 790,300 760,206" stroke="var(--seoul)" stroke-width="3.5" stroke-dasharray="9 7"/>
+        <text x="905" y="330" font-size="12" fill="var(--sub)">KTX</text>
+        <!-- Day13 首尔→仁川 -->
+        <path d="M 732,168 C 722,160 712,154 704,146" stroke="var(--transit)" stroke-width="3.5" stroke-dasharray="9 7"/>
+      </g>
+
+      <!-- 城市点与标签 -->
+      <g font-family="'Kaiti SC','KaiTi',serif" font-size="17" fill="var(--ink)">
+        <g><circle cx="478" cy="212" r="7" fill="var(--kyoto)" stroke="var(--card)" stroke-width="2.5"/><text x="478" y="196" text-anchor="middle">京都</text></g>
+        <g><circle cx="510" cy="236" r="4.5" fill="var(--kyoto)" stroke="var(--card)" stroke-width="2"/><text x="524" y="240" font-size="13">宇治</text></g>
+        <g><circle cx="538" cy="272" r="4.5" fill="var(--kyoto)" stroke="var(--card)" stroke-width="2"/><text x="552" y="276" font-size="13">奈良</text></g>
+        <g><circle cx="448" cy="324" r="7" fill="var(--osaka)" stroke="var(--card)" stroke-width="2.5"/><text x="448" y="308" text-anchor="middle">大阪</text></g>
+        <g><circle cx="352" cy="350" r="7" fill="var(--kobe)" stroke="var(--card)" stroke-width="2.5"/><text x="340" y="334" text-anchor="middle">神户</text></g>
+        <g><circle cx="392" cy="272" r="4.5" fill="var(--kobe)" stroke="var(--card)" stroke-width="2"/><text x="406" y="268" font-size="13">有马</text></g>
+        <g><circle cx="272" cy="350" r="4.5" fill="var(--kobe)" stroke="var(--card)" stroke-width="2"/><text x="268" y="330" font-size="13" text-anchor="middle">须磨·舞子</text></g>
+        <g><rect x="337" y="497" width="32" height="20" fill="none"/><circle cx="353" cy="507" r="5" fill="var(--transit)" stroke="var(--card)" stroke-width="2"/><text x="353" y="538" font-size="13" text-anchor="middle">关西机场</text></g>
+        <g><circle cx="748" cy="180" r="7" fill="var(--seoul)" stroke="var(--card)" stroke-width="2.5"/><text x="748" y="164" text-anchor="middle">首尔</text></g>
+        <g><circle cx="700" cy="138" r="4.5" fill="var(--transit)" stroke="var(--card)" stroke-width="2"/><text x="688" y="124" text-anchor="middle" font-size="13">仁川</text></g>
+        <g><circle cx="948" cy="462" r="7" fill="var(--busan)" stroke="var(--card)" stroke-width="2.5"/><text x="948" y="446" text-anchor="middle">釜山</text></g>
+        <g><circle cx="902" cy="504" r="4" fill="var(--busan)" stroke="var(--card)" stroke-width="2"/><text x="892" y="528" font-size="13">甘川</text></g>
+        <g><circle cx="966" cy="462" r="4" fill="var(--busan)" stroke="var(--card)" stroke-width="2"/><text x="966" y="488" font-size="13" text-anchor="middle">海云台</text></g>
+      </g>
+
+      <!-- 每晚住哪：小房子 -->
+      <g stroke="var(--ink)" fill="var(--card)" stroke-width="2">
+        <path d="M 498,206 l 7,7 v 6 h -14 v -6 Z" transform="translate(478,212) translate(-8,-2)" opacity="0"/>
+      </g>
+      <g font-size="15" fill="var(--sub)">
+        <text x="500" y="222">🏠</text>
+        <text x="468" y="334">🏠</text>
+        <text x="372" y="360">🏠</text>
+        <text x="966" y="472">🏠</text>
+        <text x="766" y="190">🏠</text>
+      </g>
+      <!-- 海名 -->
+      <text x="180" y="160" font-size="14" fill="var(--sea-deco)" letter-spacing="6">日本海</text>
+      <text x="580" y="480" font-size="14" fill="var(--sea-deco)" letter-spacing="4" transform="rotate(-30 580 480)">对马海峡</text>
+      <text x="660" y="560" font-size="14" fill="var(--sea-deco)" letter-spacing="6">黄海</text>
+      <text x="990" y="240" font-size="14" fill="var(--sea-deco)" letter-spacing="4" transform="rotate(64 990 240)">韩·东海</text>
+    </svg>
+    <div class="map-legend">
+      <span><i style="border-color:var(--transit)"></i>D1 抵达 9/25</span>
+      <span><i style="border-color:var(--kyoto)"></i>D3 宇治·奈良 9/27</span>
+      <span><i style="border-color:var(--osaka)"></i>D6 移居神户 9/30</span>
+      <span><i style="border-color:var(--kobe)"></i>D7 有马·舞子 10/1</span>
+      <span><i style="border-color:var(--busan)"></i>D8 飞釜山 10/2</span>
+      <span><i style="border-color:var(--seoul)"></i>D11 KTX 赴首尔 10/5</span>
+      <span><i style="border-color:var(--transit)"></i>D13 回国 10/7</span>
+    </div>
+    <div class="live-hint">🏠 = 当晚住宿城市 ｜ 时间紧的移动日（9/27、10/1、10/2）均已按出票时间倒排</div>
+  </div>
+</section>
+
+<!-- ============ 已确认预订 ============ -->
+<section id="bookings">
+  <div class="card">
+    <div class="tape"></div>
+    <h2 class="sec"><span>🎫</span>已确认预订</h2>
+
+    <div class="grp-label">✈ 机票 · A（厦门 ⇄ 日韩）</div>
+    <div class="flight">
+      <div class="fd"><b>9/24 四</b><span>过夜转机</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="厦门高崎国际机场 T3">厦门</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="香港国际机场 T1">香港 T1</span></div>
+        <div class="fn">国泰 CX979 ｜ 20:35（UTC+8）→ 22:20（UTC+8）</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>9/25 五</b><span>进入日本</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="香港国际机场 T1">香港 T1</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="关西国际机场">大阪关西 T1</span></div>
+        <div class="fn">国泰 CX506 ｜ 10:25（UTC+8）→ 15:10（日时 UTC+9）</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>10/2 五</b><span>进入韩国</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="关西国际机场 T2">大阪关西 T2</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="金海国际机场">釜山金海 I</span></div>
+        <div class="fn">济州航空 7C1352 ｜ 10:35 → 12:10（均为韩时 UTC+9）· 与 B 同机</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>10/7 三</b><span>经港转机</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="仁川国际机场 T1">首尔仁川 T1</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="香港国际机场 T1">香港 T1</span></div>
+        <div class="fn">国泰 CX439 ｜ 13:40（韩时）→ 16:30（港时 UTC+8）· 香港转机 1h15m</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>10/7 三</b><span>到家</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="香港国际机场 T1">香港 T1</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="厦门高崎国际机场 T3">厦门 T3</span></div>
+        <div class="fn">国泰 CX978 ｜ 17:45 → 19:25（均为 UTC+8）</div>
+      </div>
+    </div>
+
+    <div class="grp-label">✈ 机票 · B（义乌去 / 杭州回）</div>
+    <div class="flight">
+      <div class="fd"><b>9/24 四</b><span>过夜转机</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="义乌机场">义乌</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="香港国际机场 T1">香港 T1</span></div>
+        <div class="fn">香港快运 UO213 ｜ 16:55 → 19:05（均为 UTC+8）</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>9/25 五</b><span>进入日本</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="香港国际机场 T2">香港 T2</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="关西国际机场">大阪关西 T1</span></div>
+        <div class="fn">香港快运 UO810 ｜ 08:00（UTC+8）→ 12:45（日时）· 香港需换航站楼重托运</div>
+      </div>
+    </div>
+    <div class="flight">
+      <div class="fd"><b>10/7 三</b><span>到家</span></div>
+      <div class="fmain">
+        <div class="fline"><span class="place" data-map="仁川国际机场 T1">首尔仁川 T1</span><span class="dotline">- - ✈ - -&gt;</span><span class="place" data-map="杭州萧山国际机场">杭州</span></div>
+        <div class="fn">国航 CA140 ｜ 13:35（韩时 UTC+9）→ 15:00（UTC+8）</div>
+      </div>
+    </div>
+
+    <div class="grp-label">🏨 住宿 · 5 城共 12 晚（+香港转机夜）</div>
+    <div class="hotel">
+      <div class="hname"><span>Almont Hotel Kyoto</span><span class="stay-tag">京都 · 9/25–27 · 2晚</span></div>
+      <div class="hmeta">入住 14:00 后 ｜ 退房 11:00 前 ｜ <span class="place" data-map="Almont Hotel Kyoto">京都南站前 · 26-1 Higashikujo Nishiiwamotocho, Minami-ku</span>（点地址开地图）</div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>Apartment Hotel 11 Umeda</span><span class="stay-tag">大阪 · 9/27–30 · 3晚</span></div>
+      <div class="hmeta">入住 16:00 后 ｜ 退房 10:00 前 ｜ <span class="place" data-map="Apartment Hotel 11 Umeda">梅田 · 1-23 Tsuruno-cho, Kita-ku, Osaka</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>Hotel Monte Hermana Kobe Amalie</span><span class="stay-tag">神户 · 9/30–10/2 · 2晚</span></div>
+      <div class="hmeta">入住 15:00 后 ｜ 退房 11:00 前 ｜ <span class="place" data-map="Hotel Monte Hermana Kobe Amalie">三宫 · 2-2-28 Nakayamatedori, Chuo-ku, Kobe</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>Leidea Hotel（乐迪亚）</span><span class="stay-tag">釜山 · 10/2–5 · 3晚</span></div>
+      <div class="hmeta">入住 18:00 后 ｜ 退房 12:00 前 ｜ <span class="place" data-map="Leidea Hotel Busan">35, UN pyeonghwa-ro（近釜山站）</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>Maple Mansion Hongdae（弘大枫叶）</span><span class="stay-tag">首尔 · 10/5–7 · 2晚</span></div>
+      <div class="hmeta">地址 <span class="place" data-map="Maple Mansion Hongdae">38-5 Donggyo-ro 17an-gil, Mapo-gu, Seoul</span>（弘大入口站步行圈）</div>
+    </div>
+
+    <div class="grp-label">🎫 门票 · 体验 · 城际交通</div>
+    <div class="hotel">
+      <div class="hname"><span>有马温泉 · 兵衛向阳阁 日归 <span class="badge b-ok">已预约</span></span><span class="stay-tag">10/1（四）</span></div>
+      <div class="hmeta">11:30 check-in ｜ 套餐「昼の玉手箱」（午餐+泡汤）· 2 人 ｜ 计划 14:00 离开 ｜ <span class="place" data-map="Hyoe Koyokaku Arima Onsen">点击开地图</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>釜山胶囊小火车 <span class="badge b-ok">已订票</span></span><span class="stay-tag">10/3（六）</span></div>
+      <div class="hmeta">17:30–18:00 ｜ 尾浦（Mipo）出发 · 单程 · 2 人 ｜ 当天韩国开天节，提前 30 分钟到站 ｜ <span class="place" data-map="Mipo Station Blueline Park Busan">点击开地图</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>KTX 釜山 → 首尔 <span class="badge b-ok">已出票</span></span><span class="stay-tag">10/5（一）</span></div>
+      <div class="hmeta">12:34 釜山站 → 15:00 首尔站 ｜ KTX-청룡 036 · 5 车厢 14A/14B ｜ <span style="color:#d9492a;font-weight:700">不可改签</span>，提前 30 分钟进站 ｜ <span class="place" data-map="부산역 KTX">釜山站</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>大阪环球影城 USJ <span class="badge b-warn">待购票</span></span><span class="stay-tag">9/29（二）</span></div>
+      <div class="hmeta">门票未买 → 见下方待办清单第 1 条 ｜ <span class="place" data-map="Universal Studios Japan">点击开地图</span></div>
+    </div>
+    <div class="hotel">
+      <div class="hname"><span>神户 → 关西机场 利木津大巴</span><span class="stay-tag">10/2（五）</span></div>
+      <div class="hmeta">三宫站前发车，至 T2 约 76 分钟 ｜ 2,200 日元/人，现场购票 ｜ 建议乘 6:40–6:50 班次 ｜ <span class="place" data-map="神戸三宮 バスターミナル 関西空港リムジンバス">三宫巴士总站</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 逐日行程 ============ -->
+<section id="days">
+  <div class="card" style="padding-bottom:8px">
+    <div class="tape"></div>
+    <h2 class="sec"><span>🗓️</span>逐日行程</h2>
+    <div style="font-size:12.5px;color:var(--sub);margin:-6px 0 12px">📍带下划线的地点可点击唤起 Google 地图 ｜ 每天可展开当日路线</div>
+
+    <!-- Day 0 -->
+    <article class="day" data-date="2026-09-24" style="--c:var(--transit)">
+      <div class="day-head">
+        <span class="day-badge">Day 0</span>
+        <div class="day-title">9/24 周四 · 出发 & 香港转机夜<small>两人分别从义乌 / 厦门飞香港，机场过夜</small></div>
+      </div>
+      <div class="day-tz">本段时间均为 UTC+8</div>
+      <ul class="tl">
+        <li><time>15:00</time><div class="what">B 到达<span class="place" data-map="义乌机场">义乌机场</span>办理值机<span class="note">国内航班，建议起飞前 100 分钟到</span></div></li>
+        <li><time>16:55</time><div class="what">B 起飞｜UO213 义乌 → 香港 T1，19:05 落地</div></li>
+        <li><time>19:05</time><div class="what">B 落地香港 T1<span class="note">取行李 → 入境香港 → 前往 T2 安排过夜；随身备好次日 UO810 行程单备查</span></div></li>
+        <li><time>18:45</time><div class="what">A 到达<span class="place" data-map="厦门高崎国际机场 T3">厦门高崎机场 T3</span>办理值机</div></li>
+        <li><time>20:35</time><div class="what">A 起飞｜CX979 厦门 T3 → 香港 T1，22:20 落地</div></li>
+        <li><time>22:20</time><div class="what">A 落地香港 T1 安排过夜<span class="note">次日 CX506 同在 T1 起飞，无需换航站楼</span></div></li>
+      </ul>
+      <div class="day-stay">🌃 宿：香港机场（转机过夜）</div>
+    </article>
+
+    <!-- Day 1 -->
+    <article class="day" data-date="2026-09-25" style="--c:var(--kyoto)">
+      <div class="day-head">
+        <span class="day-badge">Day 1</span>
+        <div class="day-title">9/25 周五 · 抵达大阪 → 京都<small>日本入境日 · 适逢十五夜（日本中秋）</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-25">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-25"></div>
+      <ul class="tl">
+        <li><time>08:00</time><div class="what">B 起飞｜UO810 香港 T2 → 12:45 大阪关西 T1</div></li>
+        <li><time>10:25</time><div class="what">A 起飞｜CX506 香港 T1 → 15:10 大阪关西 T1</div></li>
+        <li><time>12:45</time><div class="what">B 先抵达<span class="place" data-map="关西国际机场 T1">关西机场 T1</span>到达厅<span class="note">入境、取行李后在到达厅等 A（约 2.5 小时，可吃饭休整）</span></div></li>
+        <li><time>15:10</time><div class="what">A 抵达 · 两人会合 ✅</div></li>
+        <li><time>16:00</time><div class="what"><span class="place" data-map="JR関西空港駅 HARUKA">HARUKA 特急</span> 关西机场 → 京都站<span class="note">约 80 分钟，班次约每 30 分钟一班，以现场为准</span></div></li>
+        <li><time>17:40</time><div class="what">抵京都站，步行约 5 分钟至 <span class="place" data-map="Almont Hotel Kyoto">Almont Hotel Kyoto</span> 寄存/入住</div></li>
+        <li><time>19:00</time><div class="what">京都站周边晚餐（拉面小路 / 伊势丹 11F 美食层）</div></li>
+        <li><time>20:00</time><div class="what"><span class="place" data-map="鴨川 KYOTO">鸭川</span>散步 · 十五夜赏月 🌕<span class="note">今日恰逢日本中秋，河边或有赏月人群</span></div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Almont Hotel Kyoto（京都 · 第 1/2 晚）</div>
+    </article>
+
+    <!-- Day 2 -->
+    <article class="day" data-date="2026-09-26" style="--c:var(--kyoto)">
+      <div class="day-head">
+        <span class="day-badge">Day 2</span>
+        <div class="day-title">9/26 周六 · 京都全天<small>伏见稻荷 → 东山 → 清水寺夕阳</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-26">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-26"></div>
+      <ul class="tl">
+        <li><time>08:00</time><div class="what"><span class="place" data-map="伏見稲荷大社">伏见稻荷大社</span> · 千本鸟居<span class="note">周六人多，8 点前到最从容；全程爬山约 2 小时可按体力取舍</span></div></li>
+        <li><time>10:30</time><div class="what">移至东山：<span class="place" data-map="二年坂・三年坂">二年坂 · 三年坂</span> 古街<span class="note">抹茶点心、伴手礼</span></div></li>
+        <li><time>12:30</time><div class="what">午餐：东山周边（汤豆腐 / 抹茶甜品）</div></li>
+        <li><time>14:00</time><div class="what"><span class="place" data-map="八坂神社">八坂神社</span> → <span class="place" data-map="祇園">祇园</span> · 花见小路</div></li>
+        <li><time>17:00</time><div class="what"><span class="place" data-map="清水寺">清水寺</span> · 舞台看夕阳 🌇<span class="note">开放至 18:00；17:30 前入场，日落约 17:40</span></div></li>
+        <li><time>19:00</time><div class="what">晚餐：祇园 / 河原町，之后回酒店</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Almont Hotel Kyoto（京都 · 第 2/2 晚）</div>
+    </article>
+
+    <!-- Day 3 -->
+    <article class="day" data-date="2026-09-27" style="--c:var(--kyoto)">
+      <div class="day-head">
+        <span class="day-badge">Day 3</span>
+        <div class="day-title">9/27 周日 · 宇治 + 奈良 → 大阪<small>移动日：行李寄存酒店，轻装往返</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-27">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-27"></div>
+      <ul class="tl">
+        <li><time>08:00</time><div class="what">退房（11:00 前），<b>行李寄存酒店前台</b>（免费）</div></li>
+        <li><time>08:30</time><div class="what">京都站 JR 奈良线 → <span class="place" data-map="JR宇治駅">宇治站</span>（约 20 分钟）</div></li>
+        <li><time>09:00</time><div class="what"><span class="place" data-map="平等院">平等院</span> · 凤凰堂 · 庭园</div></li>
+        <li><time>11:00</time><div class="what"><span class="place" data-map="中村藤吉本店 宇治">中村藤吉本店</span> · 抹茶午餐<span class="note">人多需取号，可改旁边支店</span></div></li>
+        <li><time>12:10</time><div class="what"><span class="place" data-map="宇治川">宇治川</span> · 朝雾桥散步</div></li>
+        <li><time>12:40</time><div class="what">JR 宇治 → <span class="place" data-map="JR奈良駅">奈良</span>（约 35 分钟）</div></li>
+        <li><time>13:30</time><div class="what"><span class="place" data-map="奈良公園">奈良公园</span> 喂鹿 🦌 → <span class="place" data-map="東大寺">东大寺</span> 大佛殿<span class="note">鹿仙贝 200 日元/份（现金）；小心鹿会拱背包</span></div></li>
+        <li><time>16:30</time><div class="what">近铁/JR 奈良 → 京都站（约 40–45 分钟）</div></li>
+        <li><time>17:20</time><div class="what">京都站内晚餐 → 顺路回酒店取行李</div></li>
+        <li><time>18:30</time><div class="what">JR 京都站 → <span class="place" data-map="大阪駅">大阪站</span>（新快速约 29 分钟）</div></li>
+        <li><time>19:15</time><div class="what">入住 <span class="place" data-map="Apartment Hotel 11 Umeda">Apartment Hotel 11 Umeda</span>（梅田，出站即到）</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Apartment Hotel 11 Umeda（大阪 · 第 1/3 晚）</div>
+    </article>
+
+    <!-- Day 4 -->
+    <article class="day" data-date="2026-09-28" style="--c:var(--osaka)">
+      <div class="day-head">
+        <span class="day-badge">Day 4</span>
+        <div class="day-title">9/28 周一 · 大阪市区<small>中之岛 → 黑门市场 → 心斋桥 · 道顿堀</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-28">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-28"></div>
+      <ul class="tl">
+        <li><time>09:30</time><div class="what"><span class="place" data-map="中之島公園">中之岛</span> · 中央公会堂 · 玫瑰园</div></li>
+        <li><time>11:00</time><div class="what"><span class="place" data-map="黒門市場">黑门市场</span> · 海鲜午餐<span class="note">现吃现买，人均 2,000–3,000 日元</span></div></li>
+        <li><time>14:00</time><div class="what"><span class="place" data-map="心斎橋">心斋桥</span> · 逛街购物</div></li>
+        <li><time>16:30</time><div class="what"><span class="place" data-map="道頓堀">道顿堀</span> · 格力高打卡 🏃</div></li>
+        <li><time>18:00</time><div class="what">道顿堀晚餐（章鱼烧 / 大起水产回转寿司）</div></li>
+        <li><time>19:30</time><div class="what">道顿堀夜景运河 · 可选观光船<span class="note">国庆期间人多，晚餐尽量 17:30 前入店</span></div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Apartment Hotel 11 Umeda（大阪 · 第 2/3 晚）</div>
+    </article>
+
+    <!-- Day 5 -->
+    <article class="day" data-date="2026-09-29" style="--c:var(--osaka)">
+      <div class="day-head">
+        <span class="day-badge">Day 5</span>
+        <div class="day-title">9/29 周二 · 大阪环球影城 🎢<small>全天 USJ · 周二人相对少</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-29">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-29"></div>
+      <ul class="tl">
+        <li><time>07:30</time><div class="what">梅田出发：JR 大阪环状线 → <span class="place" data-map="ユニバーサルシティ駅">环球城站</span>（约 15 分钟）</div></li>
+        <li><time>08:00</time><div class="what">园外排队（开园前 1 小时到位）<span class="note">官方开园一般 9:00，以 App 当日公告为准</span></div></li>
+        <li><time>09:00</time><div class="what"><span class="place" data-map="Universal Studios Japan">USJ</span> 开园 · 全天畅玩 🎡<span class="badge b-warn">门票待购 → 见待办第 1 条</span><span class="note">先冲哈利波特 → 任天堂世界（区域高峰需 App 领等候券）→ 下午排环球酷日本</span></div></li>
+        <li><time>12:30</time><div class="what">园内午餐（三根箸 / 小黄人餐厅）</div></li>
+        <li><time>20:00</time><div class="what">出园回梅田 · 便利店补给早餐</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Apartment Hotel 11 Umeda（大阪 · 第 3/3 晚）</div>
+    </article>
+
+    <!-- Day 6 -->
+    <article class="day" data-date="2026-09-30" style="--c:var(--kobe)">
+      <div class="day-head">
+        <span class="day-badge">Day 6</span>
+        <div class="day-title">9/30 周三 · 大阪 → 神户<small>市区一日：港口 · 神社 · 异人馆</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="09-30">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-09-30"></div>
+      <ul class="tl">
+        <li><time>08:30</time><div class="what">退房（10:00 前），JR 大阪站 → <span class="place" data-map="三ノ宮駅">三宫站</span>（约 25 分钟）</div></li>
+        <li><time>09:40</time><div class="what">行李寄存 <span class="place" data-map="Hotel Monte Hermana Kobe Amalie">酒店</span>（三宫步行圈，15:00 后入住，可先寄行李）</div></li>
+        <li><time>10:30</time><div class="what"><span class="place" data-map="メリケンパーク">美利坚公园</span> · 神户港塔 · BE KOBE 地标</div></li>
+        <li><time>12:00</time><div class="what">午餐：<span class="place" data-map="南京町">南京町</span>中华街小吃</div></li>
+        <li><time>13:30</time><div class="what"><span class="place" data-map="生田神社">生田神社</span> · 市中心千年神社</div></li>
+        <li><time>14:30</time><div class="what"><span class="place" data-map="北野異人館街">北野异人馆</span> · 风见鸡馆一带（外观散步免费）</div></li>
+        <li><time>15:30</time><div class="what">酒店正式入住 · 稍作休整</div></li>
+        <li><time>17:00</time><div class="what"><span class="place" data-map="神戸ハーバーランド umie">神户港 umie</span> · Mosaic 摩天轮看海景 🎡</div></li>
+        <li><time>19:00</time><div class="what">晚餐：<b>神户牛</b> 🥩<span class="note">国庆期热门店排队久，建议 17:30 前到或提前订位（见待办）</span></div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Hotel Monte Hermana Kobe Amalie（神户 · 第 1/2 晚）</div>
+    </article>
+
+    <!-- Day 7 -->
+    <article class="day" data-date="2026-10-01" style="--c:var(--kobe)">
+      <div class="day-head">
+        <span class="day-badge">Day 7</span>
+        <div class="day-title">10/1 周四 · 有马温泉 + 须磨 · 舞子<small>金汤泡汤 → 一路向西看明石海峡大桥日落</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-01">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为日本时间 JST（UTC+9）</div>
+      <div class="day-route" id="rt-10-01"></div>
+      <ul class="tl">
+        <li><time>10:30</time><div class="what">三宫站前巴士 → <span class="place" data-map="有馬温泉">有马温泉</span>（约 40 分钟）</div></li>
+        <li><time>11:30</time><div class="what"><span class="place" data-map="兵衛向陽閣">兵衛向阳阁</span> check-in<span class="badge b-ok">已预约</span><span class="note">「昼の玉手箱」日归：午餐 + 金汤银汤泡汤</span></div></li>
+        <li><time>14:00</time><div class="what">离开有马，巴士回三宫（约 40 分钟）</div></li>
+        <li><time>15:00</time><div class="what">JR 三宫 → <span class="place" data-map="須磨浦公園">须磨</span>（约 15 分钟）</div></li>
+        <li><time>15:15</time><div class="what"><span class="place" data-map="須磨海浜公園">须磨浦公园</span> · 海滨散步（索道视体力）</div></li>
+        <li><time>16:30</time><div class="what">JR 须磨 → <span class="place" data-map="舞子公園">舞子</span>（约 8 分钟）</div></li>
+        <li><time>16:45</time><div class="what"><span class="place" data-map="舞子公園">舞子公园</span> · <span class="place" data-map="明石海峡大橋">明石海峡大桥</span> 日落 🌉<span class="note">日落约 17:30；海洋博物馆今日来不及，不安排</span></div></li>
+        <li><time>18:00</time><div class="what">回神户市区 · 三宫周边晚餐</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Hotel Monte Hermana Kobe Amalie（神户 · 第 2/2 晚）</div>
+    </article>
+
+    <!-- Day 8 -->
+    <article class="day" data-date="2026-10-02" style="--c:var(--busan)">
+      <div class="day-head">
+        <span class="day-badge">Day 8</span>
+        <div class="day-title">10/2 周五 · 神户 → 釜山<small>早班机日 · 前一晚早睡 ⏰</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-02">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">飞行为韩时（UTC+9，与日本同时区）；落地后时间均为韩国时间 KST</div>
+      <div class="day-route" id="rt-10-02"></div>
+      <ul class="tl">
+        <li><time>06:15</time><div class="what">起床退房 · 便利店早餐</div></li>
+        <li><time>06:40</time><div class="what"><span class="place" data-map="神戸三宮 バスターミナル 関西空港リムジンバス">三宫巴士总站</span> → 关西机场大巴<span class="note">建议 6:40–6:50 班次，至 T2 约 76 分钟，2,200 日元/人</span></div></li>
+        <li><time>08:00</time><div class="what">抵达<span class="place" data-map="関西空港 第2ターミナル">关西机场 T2</span> · 济州航空值机托运<span class="badge b-info">提前 App 值机更从容</span></div></li>
+        <li><time>10:35</time><div class="what">起飞｜7C1352 关西 T2 → 釜山金海 I（12:10 落地）</div></li>
+        <li><time>12:30</time><div class="what">落地后轻轨+地铁 → 釜山站方向<span class="note">金海机场轻轨 → 沙上站换 1 号线，全程约 60 分钟</span></div></li>
+        <li><time>13:40</time><div class="what"><span class="place" data-map="Leidea Hotel Busan">Leidea Hotel</span> 寄存行李（18:00 后才能入住）</div></li>
+        <li><time>14:30</time><div class="what">轻松半日：<span class="place" data-map="자갈치시장">札嘎其市场</span> 海鲜 · <span class="place" data-map="BIFF광장">BIFF 广场</span> 小吃街</div></li>
+        <li><time>18:00</time><div class="what">酒店入住 · 楼下就是闹市区</div></li>
+        <li><time>19:00</time><div class="what">晚餐：札嘎齐烤贝 / 烤鳗鱼</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Leidea Hotel（釜山 · 第 1/3 晚）</div>
+    </article>
+
+    <!-- Day 9 -->
+    <article class="day" data-date="2026-10-03" style="--c:var(--busan)">
+      <div class="day-head">
+        <span class="day-badge">Day 9</span>
+        <div class="day-title">10/3 周六 · 甘川 → 海云台 → 胶囊小火车<small>韩国开天节+周六，人多早出发</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-03">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为韩国时间 KST（UTC+9）</div>
+      <div class="day-route" id="rt-10-03"></div>
+      <ul class="tl">
+        <li><time>08:30</time><div class="what">出发：<span class="place" data-map="감천문화마을">甘川文化村</span>（出租约 15 分钟 / 巴士约 30 分钟）</div></li>
+        <li><time>09:00</time><div class="what">甘川文化村 · 彩色山城 · 小王子打卡<span class="note">开天节+周六，9 点前到避开旅行团</span></div></li>
+        <li><time>11:30</time><div class="what">甘川 → <span class="place" data-map="해운대 해수욕장">海云台</span>（出租约 40 分钟）</div></li>
+        <li><time>12:15</time><div class="what">海云台午餐（烤贝街 / 古来炒饭）</div></li>
+        <li><time>14:00</time><div class="what">海云台海滩散步 · The Bay 101（可选）</div></li>
+        <li><time>16:00</time><div class="what">步行至 <span class="place" data-map="미포 Mipo Station">尾浦</span> 蓝线公园站</div></li>
+        <li><time>17:00</time><div class="what">胶囊小火车换票 · 候车<span class="note">提前 30 分钟到站换票</span></div></li>
+        <li><time>17:30</time><div class="what">🚂 <b>胶囊小火车</b>：尾浦 → <span class="place" data-map="청사포 Cheongsapo">青沙浦</span><span class="badge b-ok">已订票 · 2 人</span><span class="note">海上轨道约 25 分钟，黄昏光线最美</span></div></li>
+        <li><time>18:00</time><div class="what">青沙浦天空步道 · 海边日落 🌅</div></li>
+        <li><time>19:30</time><div class="what">回海云台晚餐 · 夜景，地铁回酒店</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Leidea Hotel（釜山 · 第 2/3 晚）</div>
+    </article>
+
+    <!-- Day 10 -->
+    <article class="day" data-date="2026-10-04" style="--c:var(--busan)">
+      <div class="day-head">
+        <span class="day-badge">Day 10</span>
+        <div class="day-title">10/4 周日 · 釜山西线<small>海水浴场一日 · 看广安大桥日落</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-04">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为韩国时间 KST（UTC+9）</div>
+      <div class="day-route" id="rt-10-04"></div>
+      <ul class="tl">
+        <li><time>09:30</time><div class="what">1 号线地铁 → <span class="place" data-map="다대포해수욕장">多大浦海水浴场</span>（约 40 分钟）</div></li>
+        <li><time>10:30</time><div class="what">多大浦 · 音乐喷泉 · 沙丘散步<span class="note">喷泉场次以当日公告为准</span></div></li>
+        <li><time>12:30</time><div class="what">移至 <span class="place" data-map="송도해수욕장">松岛海水浴场</span>（约 20 分钟）· 午餐</div></li>
+        <li><time>14:00</time><div class="what">松岛海边 · 缆车跨海（可选）</div></li>
+        <li><time>16:00</time><div class="what">移至 <span class="place" data-map="광안리 해수욕장">广安里海滩</span></div></li>
+        <li><time>17:00</time><div class="what"><span class="place" data-map="광안대교">广安大桥</span> · 沙滩日落 🌇</div></li>
+        <li><time>18:30</time><div class="what">晚餐：广安里（烤鳗鱼 / 猪蹄一条街）</div></li>
+        <li><time>20:30</time><div class="what">回酒店 · 收拾行李（明午退房）</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Leidea Hotel（釜山 · 第 3/3 晚）</div>
+    </article>
+
+    <!-- Day 11 -->
+    <article class="day" data-date="2026-10-05" style="--c:var(--seoul)">
+      <div class="day-head">
+        <span class="day-badge">Day 11</span>
+        <div class="day-title">10/5 周一 · 釜山 → 首尔<small>KTX 午后北上 · 汉江 + 弘大</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-05">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为韩国时间 KST（UTC+9）</div>
+      <div class="day-route" id="rt-10-05"></div>
+      <ul class="tl">
+        <li><time>09:30</time><div class="what">退房（12:00 前）· 早餐后前往<span class="place" data-map="부산역 KTX">釜山站</span></div></li>
+        <li><time>12:00</time><div class="what">进站候车（提前 30 分钟）<span class="badge b-ok">KTX 已出票 · 不可改签</span></div></li>
+        <li><time>12:34</time><div class="what">KTX-청룡 036 发车 · 5 车厢 14A/14B<span class="note">车上约 2 小时 26 分，可补个觉</span></div></li>
+        <li><time>15:00</time><div class="what">抵<span class="place" data-map="서울역">首尔站</span> → 地铁/AREX 至 <span class="place" data-map="홍대입구역">弘大入口</span>（约 25 分钟）</div></li>
+        <li><time>16:00</time><div class="what">入住 <span class="place" data-map="Maple Mansion Hongdae">Maple Mansion Hongdae</span></div></li>
+        <li><time>17:30</time><div class="what"><span class="place" data-map="망원한강공원">望远汉江公园</span> · 河边散步野餐<span class="note">便利店买炸鸡+拉面，韩剧式野餐 🍗</span></div></li>
+        <li><time>19:30</time><div class="what"><span class="place" data-map="홍대 거리">弘大商圈</span> · 街头表演 · 晚餐</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Maple Mansion Hongdae（首尔 · 第 1/2 晚）</div>
+    </article>
+
+    <!-- Day 12 -->
+    <article class="day" data-date="2026-10-06" style="--c:var(--seoul)">
+      <div class="day-head">
+        <span class="day-badge">Day 12</span>
+        <div class="day-title">10/6 周二 · 首尔<small>圣水洞咖啡 · 首尔林 · 梨泰院夜</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-06">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">本日时间均为韩国时间 KST（UTC+9）</div>
+      <div class="day-route" id="rt-10-06"></div>
+      <ul class="tl">
+        <li><time>10:00</time><div class="what"><span class="place" data-map="성수동 카페거리">圣水洞</span> · 咖啡街 · 选物店</div></li>
+        <li><time>12:30</time><div class="what">圣水洞午餐（辣炒章鱼 / 发面店）</div></li>
+        <li><time>14:00</time><div class="what"><span class="place" data-map="서울숲">首尔林</span> · 大草坪 · 昆虫馆外圈</div></li>
+        <li><time>16:30</time><div class="what">地铁 6 号线 → <span class="place" data-map="이태원">梨泰院</span></div></li>
+        <li><time>17:00</time><div class="what">梨泰院 · 世界美食街 · 清吧<span class="note">伊斯兰街拍照，日落看南山塔</span></div></li>
+        <li><time>19:00</time><div class="what">梨泰院晚餐 · 夜景 🌃</div></li>
+        <li><time>21:00</time><div class="what">回弘大 · 收拾行李（明晨早起）</div></li>
+      </ul>
+      <div class="day-stay">🏠 宿：Maple Mansion Hongdae（首尔 · 第 2/2 晚）</div>
+    </article>
+
+    <!-- Day 13 -->
+    <article class="day" data-date="2026-10-07" style="--c:var(--transit)">
+      <div class="day-head">
+        <span class="day-badge">Day 13</span>
+        <div class="day-title">10/7 周三 · 回国<small>两人同去仁川 T1，分别飞杭州 / 厦门</small></div>
+        <span class="today-flag">今天</span>
+        <button class="route-btn" data-route="10-07">当日路线 <span class="arw">▾</span></button>
+      </div>
+      <div class="day-tz">首尔段为韩时（UTC+9）；A 香港段为 UTC+8</div>
+      <div class="day-route" id="rt-10-07"></div>
+      <ul class="tl">
+        <li><time>07:30</time><div class="what">起床早餐 · 退房打包</div></li>
+        <li><time>09:30</time><div class="what">AREX <span class="place" data-map="홍대입구역">弘大入口站</span>直达 → <span class="place" data-map="인천공항 T1">仁川机场 T1</span>（约 50 分钟）</div></li>
+        <li><time>10:30</time><div class="what">抵 T1 · 值机托运（A 国泰 / B 国航）· 退税盖章<span class="note">国庆返程高峰，务必 10:30 前到；退税留 30 分钟</span></div></li>
+        <li><time>13:35</time><div class="what">B 起飞｜CA140 首尔 T1 → 杭州，15:00 落地</div></li>
+        <li><time>13:40</time><div class="what">A 起飞｜CX439 首尔 T1 → 香港 16:30<span class="note">香港 T1 转机 1h15m，行李直挂，落地跟「转机」指示走</span></div></li>
+        <li><time>17:45</time><div class="what">A 续乘 CX978 香港 T1 → 厦门，19:25 落地</div></li>
+        <li><time>19:25</time><div class="what">🏠 到家 · 旅程圆满结束 🎉</div></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 待办清单 ============ -->
+<section id="todo">
+  <div class="card">
+    <div class="tape"></div>
+    <h2 class="sec"><span>✅</span>待办清单</h2>
+    <ul>
+      <li><span class="urgent">【急】</span>购买 <b>USJ 门票</b>（9/29 用），并决定是否加购快速券（Express Pass）——越早买越便宜，快速券临近易售罄</li>
+      <li><span class="urgent">【急】</span>确认 <b>B 的香港过夜方案</b>：9/24 落地 T1 → 取行李 → 入境 → 至 T2 附近休息；随身携带次日 UO810 行程单备查</li>
+      <li>确认 <b>A 的国泰两段</b>（CX979/CX506）是否同一订单、行李能否在香港直挂</li>
+      <li>检查护照有效期（＞6 个月）· 日本、韩国签证/入境凭证就绪</li>
+      <li>开通境外流量（eSIM / 漫游）· 下载 Google 地图离线包 + 翻译 App 日韩离线包</li>
+      <li>兑换日元现金（建议 3–5 万日元/人）· 少量韩元（韩国刷卡为主）</li>
+      <li>交通卡：iPhone 钱包开通 Suica/ICOCA（安卓部分机型可）· 到韩国便利店买 T-money</li>
+      <li>订 9/30 晚<b>神户牛晚餐</b>（国庆期热门店排队久）</li>
+      <li>出发前 48 小时：国泰网上值机（4 段）· 济州航空 App 值机（7C1352）</li>
+      <li>视需要购买旅行保险</li>
+    </ul>
+    <div class="live-hint">办完一项告诉管家，页面即时更新为最新状态</div>
+  </div>
+</section>
+
+<!-- ============ 实用贴士 ============ -->
+<section id="tips">
+  <div class="card">
+    <div class="tape"></div>
+    <h2 class="sec"><span>💡</span>实用贴士</h2>
+    <div class="tip"><div class="ico">⏰</div><div><b>时差</b>：日本与韩国均为 UTC+9，比中国快 1 小时。本页所有时间均按当地时间标注，倒计时跨时区也不会算错。</div></div>
+    <div class="tip"><div class="ico">💰</div><div><b>钱</b>：日本部分小店、寺庙、市场只收现金（7-Eleven ATM 支持银联卡取现）；韩国刷卡普及率高，备 5–10 万韩元现金即可。</div></div>
+    <div class="tip"><div class="ico">🚇</div><div><b>交通卡</b>：日本 ICOCA/Suica 全关西通用（iPhone 可直接在钱包 App 开通充值）；韩国 T-money 便利店有售，地铁便利店通用。</div></div>
+    <div class="tip"><div class="ico">📶</div><div><b>网络</b>：日韩通用 eSIM 最省心；或开国际漫游。韩国多数公共区域有免费 Wi-Fi。</div></div>
+    <div class="tip"><div class="ico">🌡️</div><div><b>天气</b>：关西 18–28°C，釜山 15–25°C，首尔 12–23°C。早晚凉带一件薄外套；9 月底日本偶有台风尾期，出发前查一次天气。</div></div>
+    <div class="tip"><div class="ico">🧾</div><div><b>日本小习惯</b>：大阪电梯<b>靠右站立</b>（东京才靠左）；街头垃圾桶极少，随身带个垃圾袋；寺庙功德箱只收现金硬币。</div></div>
+    <div class="tip"><div class="ico">🍽️</div><div><b>韩国吃饭</b>：餐厅小菜免费续，大胆开口；两人点 2 主食 + 1 烤肉足够。10/1–7 是中国国庆，热门餐厅请 17:30 前入店或提前订位。</div></div>
+    <div class="tip"><div class="ico">🎡</div><div><b>人流预警</b>：10/3 韩国开天节+周六，海云台与胶囊小火车区域人最多；9/26 周六伏见稻荷尽量 8 点前到。</div></div>
+    <div class="tip"><div class="ico">🚄</div><div><b>KTX</b>：车票不可改签，10/5 务必 12:00 前到釜山站；找车厢按地面颜色指示（청룡=青色）。</div></div>
+    <div class="tip"><div class="ico">🛂</div><div><b>返程日</b>：10/7 仁川机场国庆返程高峰大排长龙，务必 10:30 前到；退税商品先盖章后托运。</div></div>
+    <div class="tip"><div class="ico">🆘</div><div><b>紧急电话</b>：日本 110（警）/ 119（急救）；韩国 112（警）/ 119（急救）。中国驻大阪总领馆 +81-6-6445-9481 · 驻釜山总领馆 +82-51-743-8828 · 驻首尔总领馆 +82-2-755-0453。</div></div>
+  </div>
+</section>
+
+<footer>京都 → 大阪 → 神户 → 釜山 → 首尔 ✈️ 祝旅途顺利</footer>
+</div>
+
+<script>
+/* ================= 事件（倒计时源） ================= */
+const EVENTS=[
+ {t:'2026-09-24T16:55:00+08:00',z:'Asia/Shanghai',tz:'UTC+8',n:'B 出发 · 义乌 → 香港',s:'香港快运 UO213 · 16:55 起飞',p:'义乌机场'},
+ {t:'2026-09-24T20:35:00+08:00',z:'Asia/Shanghai',tz:'UTC+8',n:'A 出发 · 厦门 → 香港',s:'国泰 CX979 · 20:35 起飞',p:'厦门高崎机场 T3'},
+ {t:'2026-09-25T08:00:00+08:00',z:'Asia/Shanghai',tz:'UTC+8',n:'B 转机起飞 · 香港 → 大阪',s:'香港快运 UO810 · T2 出发',p:'香港国际机场 T2'},
+ {t:'2026-09-25T10:25:00+08:00',z:'Asia/Shanghai',tz:'UTC+8',n:'A 转机起飞 · 香港 → 大阪',s:'国泰 CX506 · T1 出发',p:'香港国际机场 T1'},
+ {t:'2026-09-25T12:45:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'B 抵达大阪关西机场',s:'T1 到达厅 · 等 A 会合（约 2.5 小时）',p:'关西国际机场 T1'},
+ {t:'2026-09-25T15:10:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'A 抵达大阪 · 两人会合',s:'HARUKA 特急 → 京都（约 80 分钟）',p:'关西国际机场 T1'},
+ {t:'2026-09-26T08:00:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'京都 Day2 开始',s:'伏见稻荷大社 · 趁早人少',p:'伏見稲荷大社'},
+ {t:'2026-09-27T08:00:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'宇治 + 奈良日 开始',s:'退房寄行李 → JR 去宇治',p:'平等院'},
+ {t:'2026-09-28T09:30:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'大阪市区日 开始',s:'中之岛 → 黑门市场 → 道顿堀',p:'中之島公園'},
+ {t:'2026-09-29T08:00:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'USJ 开园前集合',s:'大阪环球影城 · 全天（门票待购）',p:'Universal Studios Japan'},
+ {t:'2026-09-30T08:30:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'退房 · 大阪 → 神户',s:'JR 约 25 分钟到三宫',p:'三ノ宮駅'},
+ {t:'2026-10-01T10:30:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'出发去有马温泉',s:'三宫站前巴士 · 约 40 分钟',p:'有馬温泉'},
+ {t:'2026-10-01T11:30:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'有马温泉 check-in',s:'兵衛向阳阁 · 昼の玉手箱（已预约）',p:'兵衛向陽閣'},
+ {t:'2026-10-02T06:40:00+09:00',z:'Asia/Tokyo',tz:'UTC+9',n:'机场大巴发车（神户 → 关西机场）',s:'三宫巴士总站 · 至 T2 约 76 分钟',p:'神戸三宮バスターミナル'},
+ {t:'2026-10-02T10:35:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'飞往釜山',s:'济州航空 7C1352 · 关西 T2 起飞',p:'関西空港第2ターミナル'},
+ {t:'2026-10-02T12:10:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'抵达釜山金海机场',s:'轻轨+地铁约 1 小时到市区',p:'김해국제공항'},
+ {t:'2026-10-03T08:30:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'甘川文化村日 开始',s:'开天节+周六 · 尽量早到',p:'감천문화마을'},
+ {t:'2026-10-03T17:30:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'胶囊小火车（已订票）',s:'尾浦 → 青沙浦 · 单程 2 人 · 提前 30 分钟到',p:'미포 Mipo'},
+ {t:'2026-10-04T09:30:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'釜山西线日 开始',s:'多大浦 → 松岛 → 广安里',p:'다대포해수욕장'},
+ {t:'2026-10-05T12:00:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'到釜山站候车（KTX）',s:'12:34 发车 · 不可改签 · 提前 30 分钟',p:'부산역'},
+ {t:'2026-10-05T12:34:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'KTX 釜山 → 首尔',s:'KTX-청룡 036 · 5 车厢 14A/14B',p:'부산역'},
+ {t:'2026-10-06T10:00:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'首尔日 开始',s:'圣水洞 → 首尔林 → 梨泰院',p:'성수동'},
+ {t:'2026-10-07T09:30:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'出发去仁川机场',s:'AREX 弘大入口 → T1 · 约 50 分钟',p:'홍대입구역'},
+ {t:'2026-10-07T13:35:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'B 返程 · 首尔 → 杭州',s:'国航 CA140 · 仁川 T1',p:'인천공항T1'},
+ {t:'2026-10-07T13:40:00+09:00',z:'Asia/Seoul',tz:'UTC+9',n:'A 返程 · 首尔 → 香港 → 厦门',s:'国泰 CX439 → CX978 · 仁川 T1',p:'인천공항T1'}
+];
+
+/* ================= 每日路线（展开图 + 多点导航） ================= */
+const DAY_ROUTES={
+ '09-25':{c:'var(--kyoto)',pts:['关西国际机场','京都站','Almont Hotel Kyoto','鴨川 KYOTO']},
+ '09-26':{c:'var(--kyoto)',pts:['伏見稲荷大社','二年坂・三年坂','八坂神社','祇園','清水寺']},
+ '09-27':{c:'var(--kyoto)',pts:['平等院','中村藤吉本店 宇治','宇治川','奈良公園','東大寺','京都站','大阪駅','Apartment Hotel 11 Umeda']},
+ '09-28':{c:'var(--osaka)',pts:['中之島公園','黒門市場','心斎橋','道頓堀']},
+ '09-29':{c:'var(--osaka)',pts:['大阪駅','ユニバーサルシティ駅','Universal Studios Japan']},
+ '09-30':{c:'var(--kobe)',pts:['三ノ宮駅','メリケンパーク','南京町 神戸','生田神社','北野異人館街','神戸ハーバーランド umie']},
+ '10-01':{c:'var(--kobe)',pts:['神戸三宮駅','有馬温泉','兵衛向陽閣','須磨海浜公園','舞子公園']},
+ '10-02':{c:'var(--busan)',pts:['神戸三宮バスターミナル','関西空港第2ターミナル',{label:'金海国际机场',q:'김해국제공항'},{label:'Leidea Hotel',q:'Leidea Hotel Busan'},{label:'札嘎其市场',q:'자갈치시장'}]},
+ '10-03':{c:'var(--busan)',pts:[{label:'甘川文化村',q:'감천문화마을'},{label:'海云台',q:'해운대해수욕장'},{label:'尾浦',q:'미포 Mipo Station'},{label:'青沙浦',q:'청사포'}]},
+ '10-04':{c:'var(--busan)',pts:[{label:'多大浦海水浴场',q:'다대포해수욕장'},{label:'松岛海水浴场',q:'송도해수욕장'},{label:'广安里海滩',q:'광안리해수욕장'}]},
+ '10-05':{c:'var(--seoul)',pts:[{label:'釜山站',q:'부산역'},{label:'首尔站',q:'서울역'},{label:'弘大入口',q:'홍대입구역'},{label:'望远汉江公园',q:'망원한강공원'},{label:'弘大商圈',q:'홍대 거리'}]},
+ '10-06':{c:'var(--seoul)',pts:[{label:'圣水洞',q:'성수동 카페거리'},{label:'首尔林',q:'서울숲'},{label:'梨泰院',q:'이태원'}]},
+ '10-07':{c:'var(--transit)',pts:['Maple Mansion Hongdae',{label:'弘大入口站',q:'홍대입구역'},{label:'仁川机场T1',q:'인천공항T1'}]}
+};
+
+/* ================= 倒计时 ================= */
+const $=id=>document.getElementById(id);
+function pad(n){return String(n).padStart(2,'0')}
+function fmtLocal(t,z){
+  const d=new Date(t);
+  const f=new Intl.DateTimeFormat('zh-CN',{timeZone:z,month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false});
+  return f.format(d);
+}
+function tick(){
+  const now=Date.now();
+  let ev=null;
+  for(const e of EVENTS){if(new Date(e.t).getTime()>now){ev=e;break}}
+  if(!ev){
+    $('ev-name').textContent='🎉 旅程已圆满结束';
+    $('ev-sub').textContent='京都 → 大阪 → 神户 → 釜山 → 首尔 · 13 天';
+    $('ev-when').textContent='欢迎回家';
+    ['cd-d','cd-h','cd-m','cd-s'].forEach(i=>$(i).textContent='00');
+    return;
+  }
+  const target=new Date(ev.t).getTime();
+  const diff=target-now;
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff%86400000/3600000);
+  const m=Math.floor(diff%3600000/60000);
+  const s=Math.floor(diff%60000/1000);
+  $('ev-name').textContent=ev.n;
+  $('ev-sub').textContent=ev.s;
+  $('ev-when').innerHTML='<b>'+fmtLocal(ev.t,ev.z)+'</b>（'+ev.tz+' 当地时间）· 点击标题右侧地点可导航';
+  $('cd-d').textContent=pad(d);
+  $('cd-h').textContent=pad(h);
+  $('cd-m').textContent=pad(m);
+  $('cd-s').textContent=pad(s);
+}
+tick();setInterval(tick,1000);
+$('ev-name').style.cursor='pointer';
+$('ev-name').addEventListener('click',()=>{
+  const now=Date.now();const ev=EVENTS.find(e=>new Date(e.t).getTime()>now);
+  if(ev)window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(ev.p),'_blank');
+});
+
+/* ================= 昼夜配色 ================= */
+let themeMode=localStorage.getItem('themeMode')||'auto';
+function applyTheme(){
+  let night;
+  if(themeMode==='day')night=false;
+  else if(themeMode==='night')night=true;
+  else{const h=new Date().getHours();night=(h<6||h>=18)}
+  document.documentElement.classList.toggle('night',night);
+  $('themeBtn').textContent=themeMode==='auto'?'🌗':(themeMode==='day'?'☀️':'🌙');
+}
+$('themeBtn').addEventListener('click',()=>{
+  themeMode=themeMode==='auto'?'day':(themeMode==='day'?'night':'auto');
+  localStorage.setItem('themeMode',themeMode);
+  applyTheme();
+});
+applyTheme();setInterval(applyTheme,60000);
+
+/* ================= 地点点击 → Google 地图 ================= */
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-map]');
+  if(el){window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(el.dataset.map),'_blank')}
+});
+
+/* ================= 今日高亮 ================= */
+(function(){
+  const t=new Date();
+  const ds=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+  document.querySelectorAll('.day').forEach(d=>{if(d.dataset.date===ds)d.classList.add('today')});
+})();
+
+/* ================= 每日路线图（蛇形 SVG）+ 多点导航 ================= */
+function qOf(p){return typeof p==='object'?p.q:p}
+function labelOf(p){return typeof p==='object'?p.label:p}
+function buildRoute(key){
+  const r=DAY_ROUTES[key];if(!r)return;
+  const pts=r.pts,n=pts.length;
+  const cols=Math.min(n,4),rows=Math.ceil(n/cols);
+  const CW=170,CH=130,PADX=30,PADY=34;
+  const W=cols*CW+PADX*2,H=rows*CH+PADY*2-40;
+  const pos=[];
+  for(let i=0;i<n;i++){
+    const row=Math.floor(i/cols);
+    let col=i%cols;
+    if(row%2===1)col=cols-1-col;
+    pos.push({x:PADX+col*CW+CW/2,y:PADY+row*CH+50});
+  }
+  let path='';
+  for(let i=0;i<pos.length-1;i++){
+    const a=pos[i],b=pos[i+1];
+    const midx=(a.x+b.x)/2;
+    path+=(i===0?'M ':'')+(a.x)+','+(a.y)+' C '+midx+','+(a.y)+' '+midx+','+(b.y)+' '+(b.x)+','+(b.y)+' ';
+  }
+  let svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+  svg+='<defs><marker id="ar-'+key+'" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M1,1 L7,4 L1,7 Z" fill="'+r.c+'"/></marker></defs>';
+  svg+='<path d="'+path+'" fill="none" stroke="'+r.c+'" stroke-width="3.5" stroke-dasharray="8 7" stroke-linecap="round" marker-end="url(#ar-'+key+')"/>';
+  for(let i=0;i<pos.length;i++){
+    const p=pos[i];
+    svg+='<circle cx="'+p.x+'" cy="'+p.y+'" r="17" fill="var(--card)" stroke="'+r.c+'" stroke-width="3"/>';
+    svg+='<text x="'+p.x+'" y="'+(p.y+5)+'" text-anchor="middle" font-size="13" font-weight="800" fill="'+r.c+'">'+(i+1)+'</text>';
+    const lab=labelOf(pts[i]);
+    const label=lab.length>10?lab.slice(0,10)+'…':lab;
+    svg+='<text x="'+p.x+'" y="'+(p.y+34)+'" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="600">'+label+'</text>';
+  }
+  svg+='</svg>';
+  const wrap=document.getElementById('rt-'+key);
+  wrap.innerHTML=svg+'<a class="gnav" style="--c:'+r.c+'" target="_blank" rel="noopener" href="'+navUrl(pts)+'">🧭 一键打开全天多点导航（Google 地图）</a>';
+}
+function navUrl(pts){
+  const q=pts.map(qOf).map(encodeURIComponent);
+  const origin=q[0],dest=q[q.length-1];
+  const wp=q.slice(1,-1).join('|');
+  return 'https://www.google.com/maps/dir/?api=1&origin='+origin+'&destination='+dest+(wp?'&waypoints='+wp:'');
+}
+document.querySelectorAll('.route-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const key=btn.dataset.route;
+    buildRoute(key);
+    const box=document.getElementById('rt-'+key);
+    box.classList.toggle('show');
+    btn.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
